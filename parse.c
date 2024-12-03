@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <string.h>
+#include "directory.h"
 
 void parse_args(char * line, char ** arg_ary) {
 	int index = 0;
@@ -9,5 +10,5 @@ void parse_args(char * line, char ** arg_ary) {
 		arg_ary[index] = token;
 		index++;
 	}
-	arg_ary[index] = NULL;	
+	arg_ary[index] = NULL;
 }
