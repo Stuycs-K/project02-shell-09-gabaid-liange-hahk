@@ -17,8 +17,8 @@ void prompt(){
     char buff[PATH_MAX];
     char *cwd = getcwd(buff, PATH_MAX);  
     if(cwd != NULL){
-        char *home = "placeholder";
-        printf("%s$", cwd);
+        //char *home = "placeholder";
+        printf("%s$ ", cwd);
     }
     else{
         perror("getcwd fail");
