@@ -25,14 +25,22 @@ int main() {
 			running = 0;
 		} else {
 			parse_args(buffer, args);
-			execFork = fork();
-			if (execFork < 0) {
-				perror("fork failed\n");
-				exit(1);
-			} else if (execFork == 0) {
-				execvp(args[0], args);
-			} else {
-				wait(&status);
+			if (!strcmp(args[0], "cd")) {
+				if (args[1] != NULL) {
+					changeDirect(args[1]);
+				} else {
+					changeDirect("~");
+				}
+ 			} else {
+				execFork = fork();
+				if (execFork < 0) {
+					perror("fork failed\n");
+					exit(1);
+				} else if (execFork == 0) {
+					execvp(args[0], args);
+				} else {
+					wait(&status);
+				}
 			}
 		}
 	}
