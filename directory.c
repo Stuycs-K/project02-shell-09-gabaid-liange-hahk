@@ -13,6 +13,7 @@ int changeDirect(char *path){
 }
 
 void prompt(){
+    int PATH_MAX = 100;
     char buff[PATH_MAX];
     char *cwd = getcwd(buff, PATH_MAX);  
     if(cwd != NULL){
