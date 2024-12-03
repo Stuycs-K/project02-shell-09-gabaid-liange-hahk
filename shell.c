@@ -15,7 +15,11 @@ int main() {
 
 	while (running) {
 		printf("$ ");
-		fgets(buffer, 499, stdin);
+		fflush(stdout);
+		char * readCommand = fgets(buffer, 499, stdin);
+		if (readCommand == NULL) {
+			running = 0;
+		}
 		buffer[strcspn(buffer, "\n")] = '\0';
 		if (!strcmp(buffer, "exit")) {
 			running = 0;
