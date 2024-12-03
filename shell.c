@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include "directory.h"
 
 int main() {
 	char buffer[500];
@@ -14,8 +15,7 @@ int main() {
 	int status;
 
 	while (running) {
-		printf("$ ");
-		fflush(stdout);
+		prompt();
 		char * readCommand = fgets(buffer, 499, stdin);
 		if (readCommand == NULL) {
 			running = 0;
