@@ -17,16 +17,21 @@ int main() {
 		printf("$ ");
 		fgets(buffer, 499, stdin);
 		buffer[strcspn(buffer, "\n")] = '\0';
-		parse_args(buffer, args);
-		execFork = fork();
-		if (execFork < 0) {
-			perror("fork failed\n");
-			exit(1);
-		} else if (execFork == 0) {
-			execvp(args[0], args);
+		if (!strcmp(buffer, "exit")) {
+			running = 0;
 		} else {
-			int childId = wait(&status);
+			parse_args(buffer, args);
+			execFork = fork();
+			if (execFork < 0) {
+				perror("fork failed\n");
+				exit(1);
+			} else if (execFork == 0) {
+				execvp(args[0], args);
+			} else {
+				wait(&status);
+			}
 		}
-		
-	}	
+	}
+	printf("exit\n");
+	exit(0);	
 }
