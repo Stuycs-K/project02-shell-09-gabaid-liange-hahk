@@ -6,6 +6,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 #include "directory.h"
+#include "redirect.h"
 
 int main() {
 	char buffer[500];
@@ -42,7 +43,10 @@ int main() {
 						perror("fork failed\n");
 						exit(1);
 					} else if (execFork == 0) {
+                        // int backup = dup(fileno(stdout));
+                        // redirOut("test.txt");
 						execvp(args[0], args);
+                        // undoOut(backup);
 					} else {
 						wait(&status);
 					}

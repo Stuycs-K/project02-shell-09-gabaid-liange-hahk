@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include "redirect.h"
 
 int redirIn(char * input) {
 	int inp = open(input, O_WRONLY);

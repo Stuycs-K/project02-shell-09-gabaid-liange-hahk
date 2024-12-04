@@ -24,7 +24,7 @@ void prompt(){
     char buff[PATH_MAX];
     char *cwd = getcwd(buff, PATH_MAX);
     if(cwd != NULL){
-        printf("%s $ ", cwd);
+        printf("%s$ ", cwd);
 	    fflush(stdout);
     }
     else{
