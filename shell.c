@@ -19,10 +19,12 @@ int main() {
 		char * readCommand = fgets(buffer, 499, stdin);
 		if (readCommand == NULL) {
 			running = 0;
+			break; // tested - this gets rid of the duplicate prompts
 		}
 		buffer[strcspn(buffer, "\n")] = '\0';
 		if (!strcmp(buffer, "exit")) {
 			running = 0;
+			break; //added one here too just in case
 		} else {
 			char * token;
 			char * buff = buffer;
@@ -32,7 +34,7 @@ int main() {
 					if (args[1] != NULL) {
 						changeDirect(args[1]);
 					} else {
-						changeDirect("~");
+						changeDirect(NULL);
 					}
 	 			} else {
 					execFork = fork();
