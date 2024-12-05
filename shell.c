@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include "directory.h"
 #include "redirect.h"
+#include "pipes.h"
 
 int main() {
 	char buffer[500];

@@ -5,7 +5,6 @@
 #include "pipes.h"
 //will use popen()
 int pipe(){
-  int status;
   int PATH_MAX = 256;
   char path[PATH_MAX];
   FILE *fp = popen("|", "-r");
@@ -18,6 +17,6 @@ int pipe(){
     printf("%s", path);
   }
 
-  status = pclose(fp);
+  pclose(fp);
   return 0;
 }
