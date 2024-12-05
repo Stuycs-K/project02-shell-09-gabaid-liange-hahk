@@ -15,7 +15,7 @@ int changeDirect(char *path){
         //^pw_dir is basically the path to the home directory
         path = home;
     }
-    printf("\n");
+    printf("\n"); // remove this later but right now it formats the lines.txt properly
     return chdir(path);
 }
 
