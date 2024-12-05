@@ -6,7 +6,7 @@
 #include "redirect.h"
 
 int redirIn(char * input) {
-	int inp = open(input, O_WRONLY);
+	int inp = open(input, O_RDONLY);
 	dup2(inp, fileno(stdin));	
 	close(inp);	
 	return 0;
