@@ -5,9 +5,10 @@
 #include "pipes.h"
 //will use popen()
 int pipe(){
+  int status;
   int PATH_MAX = 256;
   char path[PATH_MAX];
-  FILE *fp = popen("|", "-r");
+  FILE *fp = popen("|", "r");
   if(fp == NULL){
     perror("fp is empty");
     exit(1);
@@ -17,6 +18,11 @@ int pipe(){
     printf("%s", path);
   }
 
-  pclose(fp);
+  status = pclose(fp);
+  if(status == -1){
+    perror("pclose error")
+    exit(1);
+  }
+//WEXITSSTATUS(status)
   return 0;
 }
