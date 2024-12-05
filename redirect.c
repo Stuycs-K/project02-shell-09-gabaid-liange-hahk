@@ -18,7 +18,7 @@ int undoIn(int save) {
 }
 
 int redirOut(char * target) {
-	int tar = open(target, O_WRONLY | O_CREAT, 0644);
+	int tar = open(target, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	dup2(tar, fileno(stdout));
 	close(tar);
 	return 0;
