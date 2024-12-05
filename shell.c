@@ -30,7 +30,8 @@ int main() {
 			char * token;
 			char * buff = buffer;
 			while ((token = strsep(&buff, ";"))) {
-				parse_args(token, args);
+				int redir_idx = parse_args(token, args);
+                if (redir_idx != -1) args[redir_idx] = NULL;
 				if (!strcmp(args[0], "cd")) {
 					if (args[1] != NULL) {
 						changeDirect(args[1]);
@@ -43,10 +44,13 @@ int main() {
 						perror("fork failed\n");
 						exit(1);
 					} else if (execFork == 0) {
-                        // int backup = dup(fileno(stdout));
-                        // redirOut("test.txt");
+                        int backup;
+                        if (redir_idx != -1) {
+                            backup = dup(fileno(stdout));
+                            redirOut(args[redir_idx + 1]);
+                        }
 						execvp(args[0], args);
-                        // undoOut(backup);
+                        if (redir_idx != -1) undoOut(backup);
 					} else {
 						wait(&status);
 					}
