@@ -1,6 +1,6 @@
 .PHONY: clean run compile
 compile: shell.o parse.o directory.o redirect.o
-	@gcc -o shell shell.o parse.o directory.o redirect.o -lm
+	@gcc -o shell.out shell.o parse.o directory.o redirect.o -lm
 shell.o: shell.c
 	@gcc -c -Wall shell.c
 parse.o: parse.c parse.h
@@ -12,5 +12,6 @@ redirect.o: redirect.c redirect.h
 clean:
 	@rm -f shell.out
 	@rm -f *.o
+
 run:
-	@./shell
+	@./shell.out
