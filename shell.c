@@ -8,6 +8,7 @@
 #include "directory.h"
 #include "redirect.h"
 #include "pipes.h"
+#include "error.h"
 
 int main() {
 	char buffer[500];
@@ -50,7 +51,8 @@ int main() {
                             backup = dup(fileno(stdout));
                             redirOut(args[redir_idx + 1]);
                         }
-						execvp(args[0], args);
+						int ret = execvp(args[0], args);
+						if (ret == -1) err();
                         if (redir_idx != -1) undoOut(backup);
 					} else {
 						wait(&status);
