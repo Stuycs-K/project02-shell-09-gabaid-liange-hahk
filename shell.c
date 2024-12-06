@@ -33,6 +33,7 @@ int main() {
 			char * token;
 			char * buff = buffer;
 			while ((token = strsep(&buff, ";"))) {
+				if (!strcmp(token, "\0")) continue;
 				int redir_idx = parse_args(token, args);
                 if (redir_idx != -1) args[redir_idx] = NULL;
 				if (!strcmp(args[0], "cd")) {
