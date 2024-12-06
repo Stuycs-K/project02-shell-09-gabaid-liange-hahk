@@ -7,15 +7,15 @@
 #include "parse.h"
 
 void pipeHandle(char *token) {
-  char *commandOne = strtok(token, "|");
-  char *commandTwo = strtok(NULL, "|");
+  char *commandOne = strsep(&token, "|");
+  char *commandTwo = strsep(&token, "|");
 
   if(commandOne == NULL || commandTwo == NULL){
     perror("pipe fail");
     exit(1);
   }
 
-  char *argsOne[50], *argsTwo[50];
+  char *argsOne[100], *argsTwo[100];
   parse_args(commandOne, argsOne);
   parse_args(commandTwo, argsTwo);
 
