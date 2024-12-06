@@ -22,6 +22,7 @@ int main() {
 		char * readCommand = fgets(buffer, 499, stdin);
 		if (readCommand == NULL) {
 			running = 0;
+			printf("\n");
 			break; // tested - this gets rid of the duplicate prompts
 		}
 		buffer[strcspn(buffer, "\n")] = '\0';
@@ -52,8 +53,8 @@ int main() {
                             redirOut(args[redir_idx + 1]);
                         }
 						int ret = execvp(args[0], args);
-						if (ret == -1) err();
                         if (redir_idx != -1) undoOut(backup);
+						if (ret == -1) err();
 					} else {
 						wait(&status);
 					}
