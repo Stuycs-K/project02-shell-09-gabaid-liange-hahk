@@ -41,7 +41,9 @@ int main() {
 					} else {
 						changeDirect(NULL);
 					}
-	 			} else {
+	 			} else if (strchr(token, '|')){
+					pipeHandle(token);
+				} else {
 					execFork = fork();
 					if (execFork < 0) {
 						perror("fork failed\n");

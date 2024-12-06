@@ -2,27 +2,41 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 #include "pipes.h"
-//will use popen()
-int pipe(){
-  int status;
-  int PATH_MAX = 256;
-  char path[PATH_MAX];
-  FILE *fp = popen("|", "r");
-  if(fp == NULL){
-    perror("fp is empty");
+#include "parse.h"
+
+void pipeHandle(char *token) {
+  char *commandOne = strtok(token, "|");
+  char *commandTwo = strtok(NULL, "|");
+
+  if(commandOne == NULL || commandTwo == NULL){
+    perror("pipe fail");
     exit(1);
   }
 
-  while(fgets(path, PATH_MAX, fp) !=  NULL){
-    printf("%s", path);
-  }
+  char *argsOne[50], *argsTwo[50];
+  parse_args(commandOne, argsOne);
+  parse_args(commandTwo, argsTwo);
 
-  status = pclose(fp);
-  if(status == -1){
-    perror("pclose error")
+  FILE *pipeOne = popen(commandOne, "r");
+  if(pipeOne == NULL){
+    perror("first commmand fail");
     exit(1);
   }
-//WEXITSSTATUS(status)
-  return 0;
+
+  FILE *pipeTwo = popen(commandTwo, "w");
+  if(pipeTwo == NULL){
+    perror("second command fail");
+    exit(1);
+  }
+
+  char buffer[1024];
+  int bytesRead;
+  while((bytesRead = fread(buffer, 1, sizeof(buffer), pipeOne)) > 0){
+    fwrite(buffer, 1, bytesRead, pipeTwo);
+  }
+
+  pclose(pipeOne);
+  pclose(pipeTwo);
 }
