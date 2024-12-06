@@ -3,7 +3,7 @@
 
 Members: Daniel Gabai, Edmund Liang, Keith Hah
 
-Creative Team Name: 
+Creative Team Name: Can't segfault if you can't read
 
 Features implemented:
 
