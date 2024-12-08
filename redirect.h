@@ -3,10 +3,6 @@
 
 #include "parse.h"
 
-int redirIn(char * input);
-int undoIn(int save);
-int redirOut(char * target);
-int undoOut(int save);
 void redirIn(char * input);
 void undoIn(int save);
 void redirOut(char * target);
