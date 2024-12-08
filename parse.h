@@ -3,7 +3,6 @@
 struct parse_info {
     int rin_idx;
     int rout_idx;
-    char * pipe_idx;
 };
 
 struct parse_info parse_args(char * line, char ** arg_ary);

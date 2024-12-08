@@ -34,11 +34,11 @@ int main() {
 			char * buff = buffer;
 			while ((token = strsep(&buff, ";"))) {
 				if (!strcmp(token, "\0")) continue;
-				struct parse_info info = parse_args(token, args);
- 				if (info.pipe_idx != NULL) pipeHandle(token, info.pipe_idx + 2);
-				else {
-					if (info.rout_idx != -1) args[info.rout_idx] = NULL;
- 					if (info.rin_idx != -1) args[info.rin_idx] = NULL;
+ 				if (strchr(token, '|')) {
+					char * t = strsep(&token, "|");
+					pipeHandle(t, strsep(&token, "|") + 1);
+				} else {
+					struct parse_info info = parse_args(token, args);
 					if (!strcmp(args[0], "cd")) {
 						if (args[1] != NULL) {
 							changeDirect(args[1]);

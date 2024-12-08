@@ -5,6 +5,7 @@
 #include <sys/wait.h>
 #include "pipes.h"
 #include "parse.h"
+#include "redirect.h"
 
 void pipeHandle(char * commandOne, char * commandTwo) {
   /*
@@ -18,28 +19,18 @@ void pipeHandle(char * commandOne, char * commandTwo) {
     exit(1);
   }
 
-  char *argsOne[100], *argsTwo[100];
-  parse_args(commandOne, argsOne);
-  parse_args(commandTwo, argsTwo);
+  char c1[100]; strcpy(c1, commandOne);
+  char c2[100]; strcpy(c2, commandTwo);
+  char t1[] = "> TEMP";
+  char t2[] = " < TEMP";
+  strcat(c1, t1);
+  strcat(c2, t2);
 
-  FILE *pipeOne = popen(commandOne, "r");
-  if(pipeOne == NULL){
-    perror("first commmand fail");
-    exit(1);
-  }
-
-  FILE *pipeTwo = popen(commandTwo, "w");
-  if(pipeTwo == NULL){
-    perror("second command fail");
-    exit(1);
-  }
-
-  char buffer[1024];
-  int bytesRead;
-  while((bytesRead = fread(buffer, 1, sizeof(buffer), pipeOne)) > 0){
-    fwrite(buffer, 1, bytesRead, pipeTwo);
-  }
-
-  pclose(pipeOne);
-  pclose(pipeTwo);
+  char * a1[50];
+  char * a2[50];
+  struct parse_info info = parse_args(c1, a1);
+  redirHandle(a1, info);
+  info = parse_args(c2, a2);
+  redirHandle(a2, info);
+  remove("TEMP");
 }
