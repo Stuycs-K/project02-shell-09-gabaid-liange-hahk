@@ -6,14 +6,12 @@
 #include "pipes.h"
 #include "parse.h"
 
-void pipeHandle(char *token) {
+void pipeHandle(char * commandOne, char * commandTwo) {
   /*
 	Args: String token from a strsep
 	Return: Void; perrors if error
 	Use Case: Uses a temp file to implement pipes
 	*/
-  char *commandOne = strsep(&token, "|");
-  char *commandTwo = strsep(&token, "|");
 
   if(commandOne == NULL || commandTwo == NULL){
     perror("pipe fail");
