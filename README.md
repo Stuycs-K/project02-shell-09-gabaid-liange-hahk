@@ -23,3 +23,21 @@ Attempted features:
 Bugs:
 
 Function headers:
+
+- directory.h
+  - `void changeDirect(char * path);`
+  - `void prompt();`
+- error.h
+  - `void err();`
+- parse.h
+  - `struct parse_info parse_args(char * line, char ** arg_ary);`
+- pipes.h
+  - `void pipeHandle(char * commandOne, char * commandTwo);`
+- redirect.h
+  - `void redirIn(char * input);`
+  - `void undoIn(int save);`
+  - `void redirOut(char * target);`
+  - `void undoOut(int save);`
+  - `void redirHandle(char ** args, struct parse_info info);`
+- shell.c
+  - `int main();`
