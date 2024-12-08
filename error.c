@@ -3,7 +3,12 @@
 #include <stdio.h>
 #include <string.h>
 
-int err(){
+void err(){
+    /*
+	Args: None
+	Return: Void
+	Use Case: Runs when other code errors; Prints errno and exits
+	*/
     printf("Error: %s\n",strerror(errno));
     exit(1);
 }

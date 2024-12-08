@@ -35,10 +35,17 @@ int main() {
 			while ((token = strsep(&buff, ";"))) {
 				if (!strcmp(token, "\0")) continue;
 				struct parse_info info = parse_args(token, args);
- 				if (info.pipe_idx != -1) {
-					pipeHandle(token);
-				} else {
-					redirHandle(args, info);
+ 				if (info.pipe_idx != -1) pipeHandle(token);
+				else {
+					if (info.rout_idx != -1) args[info.rout_idx] = NULL;
+ 					if (info.rin_idx != -1) args[info.rin_idx] = NULL;
+					if (!strcmp(args[0], "cd")) {
+						if (args[1] != NULL) {
+							changeDirect(args[1]);
+						} else {
+							changeDirect(NULL);
+						}
+					} else redirHandle(args, info);
 				}
 			}
 		}
