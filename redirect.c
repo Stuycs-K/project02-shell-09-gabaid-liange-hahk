@@ -52,6 +52,11 @@ void undoOut(int save) {
 }
 
 void redirHandle(char ** args, struct parse_info info) {
+	/*
+	Args: a parsed args array and parse info created from parse_args
+	Return: Void; calls perror() or err() if error
+	Use Case: executes a parsed command that may contain < or > once each but not |
+	*/
 	pid_t execFork = fork();
 	int status;
 	if (execFork < 0) {

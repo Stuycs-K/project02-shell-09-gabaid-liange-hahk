@@ -11,11 +11,15 @@
 #include "error.h"
 
 int main() {
+	/*
+	Args: none
+	Return: error code
+	Use Case: the main function for the shell
+	*/
+
 	char buffer[500];
 	char * args[50];
 	int running = 1;
-	pid_t execFork;
-	int status;
 
 	while (running) {
 		prompt();

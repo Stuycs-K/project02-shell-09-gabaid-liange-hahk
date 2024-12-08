@@ -9,7 +9,7 @@
 
 void pipeHandle(char * commandOne, char * commandTwo) {
   /*
-	Args: String token from a strsep
+	Args: Pointers to where the commands to the left and right of the pipe symbol start
 	Return: Void; perrors if error
 	Use Case: Uses a temp file to implement pipes
 	*/
