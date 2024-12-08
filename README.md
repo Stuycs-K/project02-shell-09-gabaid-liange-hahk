@@ -13,7 +13,10 @@ Features implemented:
 - Waiting until the exec'd program exits before going back to user input
 - Semicolons to separate commands
 - Prompt includes the cwd path
+- cd changes the current working directory
 - Quitting the shell with exit or Ctrl+D
+- Redirection and pipes with >, <, and |
+
 
 Attempted features:
 
