@@ -4,6 +4,7 @@
 #include <string.h>
 #include <pwd.h>
 #include "directory.h"
+#include "error.h"
 
 void changeDirect(char *path){
     /*
