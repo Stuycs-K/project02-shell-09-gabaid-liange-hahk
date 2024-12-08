@@ -3,7 +3,7 @@
 
 Members: Daniel Gabai, Edmund Liang, Keith Hah
 
-Creative Team Name: 
+Creative Team Name: Can't segfault if you can't read
 
 Features implemented:
 
@@ -14,3 +14,9 @@ Features implemented:
 - Semicolons to separate commands
 - Prompt includes the cwd path
 - Quitting the shell with exit or Ctrl+D
+
+Attempted features:
+
+Bugs:
+
+Function headers:
