@@ -4,6 +4,11 @@
 #include "parse.h"
 
 struct parse_info parse_args(char * line, char ** arg_ary) {
+	/*
+	Args: Command string and arg array
+	Return: Struct of chosen token locations
+	Use Case: Goes through the command string and finds locations of '<', '>', and '|' operators
+	*/
     struct parse_info ret;
     ret.rout_idx = ret.rin_idx = ret.pipe_idx = -1;
 	int index = 0;

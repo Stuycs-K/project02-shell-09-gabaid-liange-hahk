@@ -7,6 +7,11 @@
 #include "parse.h"
 
 void pipeHandle(char *token) {
+  /*
+	Args: String token from a strsep
+	Return: Void; perrors if error
+	Use Case: Uses a temp file to implement pipes
+	*/
   char *commandOne = strsep(&token, "|");
   char *commandTwo = strsep(&token, "|");
 
