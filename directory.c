@@ -5,7 +5,12 @@
 #include <pwd.h>
 #include "directory.h"
 
-int changeDirect(char *path){
+void changeDirect(char *path){
+    /*
+	Args: Name of path
+	Return: Void; calls err() if error
+	Use Case: Changes directory to inputed path
+	*/
     int PATH_MAX = 256;
     char home[PATH_MAX];
 
@@ -16,10 +21,15 @@ int changeDirect(char *path){
         path = home;
     }
     printf("\n"); // remove this later but right now it formats the lines.txt properly
-    return chdir(path);
+    if (chdir(path) == -1) err();
 }
 
 void prompt(){
+    /*
+	Args: None
+	Return: Void; perrors if error
+	Use Case: Prints the directory prompt for the user
+	*/
     int PATH_MAX = 256;
     char buff[PATH_MAX];
     char *cwd = getcwd(buff, PATH_MAX);
