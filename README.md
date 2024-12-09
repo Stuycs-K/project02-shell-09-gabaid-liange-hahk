@@ -17,13 +17,11 @@ Features implemented:
 - Quitting the shell with exit or Ctrl+D
 - Redirection and pipes with >, <, and |
 
-
 Attempted features:
 
 Bugs:
 
 Function headers:
-
 - directory.h
   - `void changeDirect(char * path);`
   - `void prompt();`

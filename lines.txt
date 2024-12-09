@@ -2,4 +2,7 @@ ls
 cd
 ls
 cd
-cd
+ls | wc
+echo hello
+echo testing
+ls
