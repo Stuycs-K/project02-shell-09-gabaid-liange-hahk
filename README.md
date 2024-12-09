@@ -20,6 +20,7 @@ Features implemented:
 Attempted features:
 
 Bugs:
+- Trying to execute 'cd ' (adding an extra space) will break the program, to cd home you must use just 'cd' or 'cd ~'
 
 Function headers:
 - directory.h
