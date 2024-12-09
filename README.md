@@ -16,6 +16,7 @@ Features implemented:
 - cd changes the current working directory
 - Quitting the shell with exit or Ctrl+D
 - Redirection and pipes with >, <, and |
+- Can use an input file with commands via ./shell < file.txt
 
 Attempted features:
 
